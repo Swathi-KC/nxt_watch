@@ -29,7 +29,7 @@ const MenuItems = () => (
             const iconActive = '#ff0b37'
             return (
               <MenuListContainer>
-                <Link to="/">
+                <Link to="/" className="link-item">
                   <MenuLink
                     theme={theme}
                     key="HOME"
@@ -47,7 +47,7 @@ const MenuItems = () => (
                     <MenuName theme={theme}>Home</MenuName>
                   </MenuLink>
                 </Link>
-                <Link to="/trending">
+                <Link to="/trending" className="link-item">
                   <MenuLink
                     theme={theme}
                     key="TRENDING"
@@ -67,7 +67,7 @@ const MenuItems = () => (
                     <MenuName theme={theme}>Trending</MenuName>
                   </MenuLink>
                 </Link>
-                <Link to="/gaming">
+                <Link to="/gaming" className="link-item">
                   <MenuLink
                     theme={theme}
                     key="GAMING"
@@ -86,7 +86,7 @@ const MenuItems = () => (
                   </MenuLink>
                 </Link>
 
-                <Link to="/saved-videos">
+                <Link to="/saved-videos" className="link-item">
                   <MenuLink
                     theme={theme}
                     key="SAVED_VIDEOS"
