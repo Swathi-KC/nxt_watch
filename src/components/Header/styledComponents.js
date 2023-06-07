@@ -38,10 +38,14 @@ export const MenuPopupMobile = styled.div`
   background-color: ${props =>
     props.theme === 'dark' ? '#0f0f0f' : '#f9f9f9'};
 `
-export const CloseButton = styled.div`
+export const CloseButton = styled.button`
   align-self: flex-end;
   margin-top: 10px;
   margin-right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
 `
 
 export const MenuListMobile = styled.div`

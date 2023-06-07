@@ -12,7 +12,6 @@ import {
   VideoName,
   VideoPostCont,
   VideoView,
-  VideoPostedAt,
 } from './styledComponents'
 
 import ThemeContext from '../../context/ThemeContext'
@@ -65,7 +64,9 @@ const VideosCard = props => {
                           <VideoName>{name}</VideoName>
                           <VideoPostCont>
                             <VideoView>{viewCount} views</VideoView>
-                            <VideoPostedAt>{videoPostedAt} ago</VideoPostedAt>
+                            <p className="video-published">
+                              {videoPostedAt} ago
+                            </p>
                           </VideoPostCont>
                         </VideoInfoCont>
                       </VideoContentContainer>

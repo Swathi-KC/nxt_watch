@@ -4,7 +4,7 @@ export const HomeMainContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${props =>
-    props.theme === 'dark' ? '#181818' : '#f1f1f1'};
+    props.theme === 'dark' ? '#181818' : '#f9f9f9'};
 `
 export const MainContainer = styled.div`
   display: flex;
@@ -138,4 +138,13 @@ export const FailureImage = styled(NoVideosImg)``
 
 export const LoaderContainer = styled(NoVideosContainer)`
   text-align: center;
+`
+export const CloseButton = styled.button`
+  align-self: flex-end;
+  margin-top: 10px;
+  margin-right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
 `

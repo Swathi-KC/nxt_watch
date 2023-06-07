@@ -40,7 +40,7 @@ class Login extends Component {
     this.setState({showSubmitError: true, errorMsg})
   }
 
-  submitForm = async event => {
+  onSubmit = async event => {
     event.preventDefault()
     const {username, password} = this.state
     const userDetails = {username, password}
@@ -88,16 +88,15 @@ class Login extends Component {
         {value => {
           const {isDarkTheme} = value
 
-          const websiteLogoImage = isDarkTheme
-            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
-            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
-
+          const websiteLogo = isDarkTheme
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
           const theme = isDarkTheme ? 'dark' : 'light'
 
           return (
             <LoginFromContainer theme={theme}>
-              <FormContainer theme={theme}>
-                <WebsiteLogo src={websiteLogoImage} alt="website logo" />
+              <FormContainer theme={theme} onSubmit={this.onSubmit}>
+                <WebsiteLogo src={websiteLogo} alt="website logo" />
                 <InputContainer>
                   <InputLabel htmlFor="username" theme={theme}>
                     USERNAME

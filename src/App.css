@@ -14,3 +14,10 @@ body {
 .link-item {
   text-decoration: none;
 }
+
+.video-published {
+  color: #475569;
+  font-size: 14px;
+  text-decoration: none;
+  margin-left: 5px;
+}

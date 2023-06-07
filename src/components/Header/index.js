@@ -23,7 +23,6 @@ import {
   CloseButton,
   MenuListMobile,
   LogoutPopupCont,
-  LogoutText,
   PopupButton,
   NavLargeContainer,
   NavLargeIconCont,
@@ -112,9 +111,8 @@ const Header = props => (
               >
                 {close => (
                   <LogoutPopupCont theme={theme}>
-                    <LogoutText theme={theme} as="p">
-                      Are you sure, you want to logout
-                    </LogoutText>
+                    <p>Are you sure, you want to logout</p>
+
                     <div>
                       <PopupButton
                         outline
@@ -181,9 +179,7 @@ const Header = props => (
               >
                 {close => (
                   <LogoutPopupCont theme={theme}>
-                    <LogoutText theme={theme}>
-                      Are you sure you want to logout?
-                    </LogoutText>
+                    <p>Are you sure, you want to logout</p>
                     <div>
                       <PopupButton
                         outline

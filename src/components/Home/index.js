@@ -23,6 +23,7 @@ import {
   SearchContainer,
   SearchInputElement,
   SearchButton,
+  CloseButton,
   VideosListCont,
   NoVideosContainer,
   NoVideosImg,
@@ -32,7 +33,6 @@ import {
   FailureImage,
   LoaderContainer,
 } from './styledComponents'
-import {CloseButton} from '../Header/styledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -218,7 +218,7 @@ class Home extends Component {
           const theme = isDarkTheme ? 'dark' : 'light'
           const color = isDarkTheme ? '#f9f9f9' : '#181818'
           return (
-            <HomeMainContainer theme={theme}>
+            <HomeMainContainer data-testid="home" theme={theme}>
               <Header />
               <MainContainer>
                 <SidebarCont>
@@ -238,6 +238,7 @@ class Home extends Component {
                       type="button"
                       theme={theme}
                       data-testid="searchButton"
+                      onClick={this.getHomeVideos}
                     >
                       <BsSearch size={18} color={color} />
                     </SearchButton>

@@ -53,7 +53,7 @@ export const VideoItemDetailsContainer = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${props =>
-    props.theme === 'dark' ? '#0f0f0f' : '#f1f1f1'};
+    props.theme === 'dark' ? '#0f0f0f' : '#f9f9f9'};
   overflow-x: auto;
   flex-grow: 1;
   padding: 25px;
@@ -117,9 +117,6 @@ export const VideoInfoText = styled.p`
   margin-right: 10px;
   font-weight: 400;
   text-decoration: none;
-  &:active {
-    text-decoration: none;
-  }
 `
 
 export const ReactButton = styled.button`

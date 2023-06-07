@@ -150,7 +150,7 @@ class VideoItemDetails extends Component {
                 <LikesAndPostedTimeCont>
                   <ViewsAndPostTimeCont>
                     <VideoInfoText>{viewCount} views</VideoInfoText>
-                    <VideoInfoText as="p">{videoPostedAt} ago</VideoInfoText>
+                    <VideoInfoText>{videoPostedAt} ago</VideoInfoText>
                   </ViewsAndPostTimeCont>
                   <div>
                     <ReactButton

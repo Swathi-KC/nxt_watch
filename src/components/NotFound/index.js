@@ -32,7 +32,7 @@ const NotFound = () => (
             <NotFoundContainer theme={theme}>
               <NotFoundImage src={imgUrl} alt="not found" />
               <NotFoundText theme={theme}>Page Not Found</NotFoundText>
-              <NotFoundSubText as="p" theme={theme}>
+              <NotFoundSubText theme={theme}>
                 we are sorry, the page you requested could not be found.
               </NotFoundSubText>
             </NotFoundContainer>

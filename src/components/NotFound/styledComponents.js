@@ -4,7 +4,7 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${props =>
-    props.theme === 'dark' ? '#0f0f0f' : '#f1f1f1'};
+    props.theme === 'dark' ? '#0f0f0f' : '#f9f9f9'};
   min-height: 90vh;
   @media screen and (min-width: 768px) {
     flex-direction: row;
@@ -46,8 +46,9 @@ export const NotFoundText = styled.h1`
   padding: 5px;
   color: ${props => (props.theme === 'dark' ? '#f9f9f9' : ' #231f20')};
 `
-export const NotFoundSubText = styled.h1`
+export const NotFoundSubText = styled.p`
   margin: 0px;
   padding: 5px;
+  font-size: 16px;
   color: ${props => (props.theme === 'dark' ? ' #616e7c' : ' #231f20')};
 `
