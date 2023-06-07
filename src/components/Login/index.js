@@ -31,9 +31,9 @@ class Login extends Component {
 
   onSubmitSuccess = jwtToken => {
     const {history} = this.props
-
     Cookies.set('jwt_token', jwtToken, {expires: 30})
     history.replace('/')
+    this.setState({showSubmitError: false})
   }
 
   onSubmitFailure = errorMsg => {
@@ -97,12 +97,8 @@ class Login extends Component {
           return (
             <LoginFromContainer theme={theme}>
               <FormContainer theme={theme}>
-                <WebsiteLogo
-                  src={websiteLogoImage}
-                  className="login-website-logo-img"
-                  alt="website logo"
-                />
-                <InputContainer className="input-container">
+                <WebsiteLogo src={websiteLogoImage} alt="website logo" />
+                <InputContainer>
                   <InputLabel htmlFor="username" theme={theme}>
                     USERNAME
                   </InputLabel>
@@ -110,28 +106,25 @@ class Login extends Component {
                     type="text"
                     id="username"
                     value={username}
-                    className="input-field"
                     onChange={this.onChangeUsername}
                     placeholder="Username"
                   />
                 </InputContainer>
-                <InputContainer className="input-container">
+                <InputContainer>
                   <InputLabel htmlFor="password">PASSWORD</InputLabel>
                   <InputElement
                     type={showPassword ? 'text' : 'password'}
                     id="password"
                     value={password}
-                    className="input-field"
                     onChange={this.onChangePassword}
                     placeholder="Password"
                   />
                 </InputContainer>
 
-                <CheckboxContainer className="checkbox-cont">
+                <CheckboxContainer>
                   <CheckboxElement
                     type="checkbox"
                     id="checkbox"
-                    className="checkbox-ele"
                     checked={this.showPassword}
                     onChange={this.onChangeShowPassword}
                   />
@@ -139,15 +132,11 @@ class Login extends Component {
                     Show Password
                   </CheckboxLabel>
                 </CheckboxContainer>
-                <LoginButton type="submit" className="login-button">
-                  Login
-                </LoginButton>
+                <LoginButton type="submit">Login</LoginButton>
 
-                {showSubmitError && (
-                  <ErrorMessage className="error-message">
-                    *{errorMsg}
-                  </ErrorMessage>
-                )}
+                <ErrorMessage>
+                  {showSubmitError && `* ${errorMsg}`}
+                </ErrorMessage>
               </FormContainer>
             </LoginFromContainer>
           )

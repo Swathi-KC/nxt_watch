@@ -4,7 +4,7 @@ export const HomeMainContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${props =>
-    props.theme === 'dark' ? '#0f0f0f' : '#f1f1f1'};
+    props.theme === 'dark' ? '#181818' : '#f1f1f1'};
 `
 export const MainContainer = styled.div`
   display: flex;

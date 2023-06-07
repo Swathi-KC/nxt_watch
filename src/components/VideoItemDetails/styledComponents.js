@@ -127,7 +127,7 @@ export const ReactButton = styled.button`
   border: none;
   cursor: pointer;
   outline: none;
-  color: ${props => (props.theme === 'active' ? '#3b82f6' : '#475569')};
+  color: ${props => (props.theme === 'active' ? '#2563eb' : '#64748b')};
 `
 export const ChannelInfoCont = styled.div`
   width: 100%;
@@ -143,7 +143,7 @@ export const ChannelLogo = styled.img`
 `
 
 export const ChannelInfoText = styled.p`
-  color: ${props => (props.theme === 'dark' ? '#f1f1f1' : ' #424242')};
+  color: ${props => (props.theme === 'dark' ? '#2563eb' : '#64748b')};
   margin: 0px;
   font-size: 16px;
   text-decoration: none;

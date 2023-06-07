@@ -231,13 +231,13 @@ class VideoItemDetails extends Component {
           : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
         return (
           <FailureContainer>
-            <FailureImage src={imageUrl} />
+            <FailureImage src={imageUrl} alt="failure view" />
             <FailureText theme={theme}>Oops! Something Went Wrong</FailureText>
             <FailureText theme={theme} as="p">
               We are having some trouble to complete your request. Please try
-              again
+              again.
             </FailureText>
-            <RetryButton type="button" onClick={this.getGamingVideos}>
+            <RetryButton type="button" onClick={this.getVideoDetails}>
               Retry
             </RetryButton>
           </FailureContainer>

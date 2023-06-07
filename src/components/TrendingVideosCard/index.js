@@ -73,7 +73,9 @@ const TrendingVideosCard = props => {
                             <VideoName>{name}</VideoName>
                             <VideoPostCont>
                               <VideoView>{viewCount} views</VideoView>
-                              <VideoPostedAt>{videoPostedAt} ago</VideoPostedAt>
+                              <VideoPostedAt as="p">
+                                {videoPostedAt} ago
+                              </VideoPostedAt>
                             </VideoPostCont>
                           </VideoInfoCont>
                         </TrendingContentContainer>

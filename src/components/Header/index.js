@@ -113,7 +113,7 @@ const Header = props => (
                 {close => (
                   <LogoutPopupCont theme={theme}>
                     <LogoutText theme={theme}>
-                      Are you sure you want to logout?
+                      Are you sure, you want to logout
                     </LogoutText>
                     <div>
                       <PopupButton
