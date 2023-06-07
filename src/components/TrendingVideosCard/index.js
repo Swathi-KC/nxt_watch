@@ -2,11 +2,12 @@ import {formatDistanceToNow} from 'date-fns'
 import {Link} from 'react-router-dom'
 
 import {
-  VideoCardContainer,
+  TrendingCardContainer,
+  TrendingCardView,
   ThumbnailImage,
-  VideoCardContentContainer,
+  TrendingCardContentContainer,
   ChannelLogo,
-  VideoContentContainer,
+  TrendingContentContainer,
   VideoTitle,
   VideoInfoCont,
   VideoName,
@@ -18,7 +19,7 @@ import {
 import ThemeContext from '../../context/ThemeContext'
 import ActiveMenuContext from '../../context/ActiveMenuContext'
 
-const VideosCard = props => {
+const TrendingVideosCard = props => {
   const {videoDetails} = props
   const {
     thumbnailUrl,
@@ -48,30 +49,38 @@ const VideosCard = props => {
             {activeMenuValue => {
               const {changeActiveMenu} = activeMenuValue
               return (
-                <VideoCardContainer>
+                <TrendingCardContainer>
                   <Link
                     to={`/videos/${id}`}
                     className="link-item"
                     onClick={() => changeActiveMenu('INITIAL')}
                   >
-                    <ThumbnailImage src={thumbnailUrl} alt="video thumbnail" />
-                    <VideoCardContentContainer>
-                      <div>
-                        <ChannelLogo src={profileImageUrl} alt="channel logo" />
-                      </div>
-                      <VideoContentContainer>
-                        <VideoTitle theme={theme}>{title}</VideoTitle>
-                        <VideoInfoCont>
-                          <VideoName>{name}</VideoName>
-                          <VideoPostCont>
-                            <VideoView>{viewCount} views</VideoView>
-                            <VideoPostedAt>{videoPostedAt} ago</VideoPostedAt>
-                          </VideoPostCont>
-                        </VideoInfoCont>
-                      </VideoContentContainer>
-                    </VideoCardContentContainer>
+                    <TrendingCardView>
+                      <ThumbnailImage
+                        src={thumbnailUrl}
+                        alt="video thumbnail"
+                      />
+                      <TrendingCardContentContainer>
+                        <div>
+                          <ChannelLogo
+                            src={profileImageUrl}
+                            alt="channel logo"
+                          />
+                        </div>
+                        <TrendingContentContainer>
+                          <VideoTitle theme={theme}>{title}</VideoTitle>
+                          <VideoInfoCont>
+                            <VideoName>{name}</VideoName>
+                            <VideoPostCont>
+                              <VideoView>{viewCount} views</VideoView>
+                              <VideoPostedAt>{videoPostedAt} ago</VideoPostedAt>
+                            </VideoPostCont>
+                          </VideoInfoCont>
+                        </TrendingContentContainer>
+                      </TrendingCardContentContainer>
+                    </TrendingCardView>
                   </Link>
-                </VideoCardContainer>
+                </TrendingCardContainer>
               )
             }}
           </ActiveMenuContext.Consumer>
@@ -80,4 +89,4 @@ const VideosCard = props => {
     </ThemeContext.Consumer>
   )
 }
-export default VideosCard
+export default TrendingVideosCard

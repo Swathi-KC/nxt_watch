@@ -1,37 +1,46 @@
 import styled from 'styled-components'
 
-export const VideoCardContainer = styled.li`
+export const TrendingCardContainer = styled.li`
   width: 100%;
-  @media screen and (min-width: 576px) and (max-width: 767px) {
-    width: 50%;
-    padding: 5px;
-    height: 350px;
-  }
+`
+export const TrendingCardView = styled.div`
+  display: flex;
+  margin-bottom: 20px;
+  flex-direction: column;
   @media screen and (min-width: 768px) {
-    width: 33%;
-    padding: 5px;
-    height: 100%;
+    flex-direction: row;
+    align-items: center;
   }
 `
 
 export const ThumbnailImage = styled.img`
   width: 100%;
+  @media screen and (min-width: 768px) {
+    width: 60%;
+  }
 `
 
-export const VideoCardContentContainer = styled.div`
+export const TrendingCardContentContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding: 5px;
   text-decoration: none;
+  @media screen and (min-width: 768px) {
+    width: 40%;
+  }
 `
 
 export const ChannelLogo = styled.img`
   width: 40px;
+  margin-right: 10px;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 `
 
-export const VideoContentContainer = styled.div`
+export const TrendingContentContainer = styled.div`
   margin-left: 5px;
 `
 

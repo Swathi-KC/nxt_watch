@@ -1,64 +1,52 @@
 import {Component} from 'react'
+
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-
-import {IoMdClose} from 'react-icons/io'
-import {BsSearch} from 'react-icons/bs'
-
-import Header from '../Header'
+import {HiFire} from 'react-icons/hi'
 import Sidebar from '../Sidebar'
-import VideosCard from '../VideosCard'
+import Header from '../Header'
+import TrendingVideosCard from '../TrendingVideosCard'
 
 import ThemeContext from '../../context/ThemeContext'
 
 import {
-  HomeMainContainer,
+  MainTrendingContainer,
   MainContainer,
   SidebarCont,
-  HomeContainer,
-  BannerContainer,
-  BannerLogo,
-  BannerText,
-  BannerGetButton,
-  SearchContainer,
-  SearchInputElement,
-  SearchButton,
-  VideosListCont,
-  NoVideosContainer,
-  NoVideosImg,
-  FailureText,
-  RetryButton,
+  TrendingContainer,
+  TrendingMenuContainer,
+  IconContainer,
+  MenuHeading,
   FailureContainer,
   FailureImage,
+  FailureText,
+  RetryButton,
   LoaderContainer,
+  VideosListCont,
 } from './styledComponents'
-import {CloseButton} from '../Header/styledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
-  inProgress: 'INPROGRESS',
   success: 'SUCCESS',
   failure: 'FAILURE',
+  inProgress: 'IN_PROGRESS',
 }
 
-class Home extends Component {
+class Trending extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
-    showBanner: true,
     videosList: [],
-    searchInput: '',
   }
 
   componentDidMount() {
-    this.getHomeVideos()
+    this.getTrendingVideos()
   }
 
-  getHomeVideos = async () => {
+  getTrendingVideos = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
-    const {searchInput} = this.state
     const jwtToken = Cookies.get('jwt_token')
 
-    const apiUrl = `https://apis.ccbp.in/videos/all?search=${searchInput}`
+    const apiUrl = 'https://apis.ccbp.in/videos/trending'
     const options = {
       method: 'GET',
       headers: {
@@ -88,67 +76,19 @@ class Home extends Component {
     }
   }
 
-  onClickCloseBanner = () => {
-    this.setState({showBanner: false})
-  }
-
-  onChangeSearchInput = event => {
-    this.setState({searchInput: event.target.value})
-  }
-
-  renderPopupBanner = () => (
-    <BannerContainer data-testid="banner">
-      <CloseButton data-testid="close" onClick={this.onClickCloseBanner}>
-        <IoMdClose size={20} />
-      </CloseButton>
-      <BannerLogo
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-        alt="nxt watch logo"
-      />
-      <BannerText>Buy Nxt Watch Premium prepaid plans with UPI</BannerText>
-      <BannerGetButton type="button">GET IT NOW</BannerGetButton>
-    </BannerContainer>
-  )
-
-  renderNoVideosView = () => (
-    <ThemeContext.Consumer>
-      {value => {
-        const {isDarkTheme} = value
-        const theme = isDarkTheme ? 'dark' : 'light'
-        return (
-          <NoVideosContainer>
-            <NoVideosImg
-              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
-              alt="no videos"
-            />
-            <FailureText theme={theme}>No search results found</FailureText>
-            <FailureText theme={theme} as="p">
-              Try different key words or remove search filter
-            </FailureText>
-            <RetryButton type="button" onClick={this.getHomeVideos}>
-              Retry
-            </RetryButton>
-          </NoVideosContainer>
-        )
-      }}
-    </ThemeContext.Consumer>
-  )
-
-  renderSuccessVideosListView = () => {
+  renderTrendingSuccessView = () => {
     const {videosList} = this.state
-    if (videosList.length === 0) {
-      return this.renderNoVideosView()
-    }
+
     return (
       <VideosListCont>
         {videosList.map(eachVideo => (
-          <VideosCard key={eachVideo.id} videoDetails={eachVideo} />
+          <TrendingVideosCard key={eachVideo.id} videoDetails={eachVideo} />
         ))}
       </VideosListCont>
     )
   }
 
-  renderHomeFailureView = () => (
+  renderTrendingFailureView = () => (
     <ThemeContext.Consumer>
       {value => {
         const {isDarkTheme} = value
@@ -164,7 +104,7 @@ class Home extends Component {
               We are having some trouble to complete your request. Please try
               again
             </FailureText>
-            <RetryButton type="button" onClick={this.getHomeVideos}>
+            <RetryButton type="button" onClick={this.getTrendingVideos}>
               Retry
             </RetryButton>
           </FailureContainer>
@@ -191,13 +131,13 @@ class Home extends Component {
     </ThemeContext.Consumer>
   )
 
-  renderRespectiveHomeVideoView = () => {
+  renderRespectiveTrendingVideoView = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
       case apiStatusConstants.success:
-        return this.renderSuccessVideosListView()
+        return this.renderTrendingSuccessView()
       case apiStatusConstants.failure:
-        return this.renderHomeFailureView()
+        return this.renderTrendingFailureView()
       case apiStatusConstants.inProgress:
         return this.renderLoadingView()
       default:
@@ -206,42 +146,29 @@ class Home extends Component {
   }
 
   render() {
-    const {showBanner, searchInput} = this.state
     return (
       <ThemeContext.Consumer>
         {value => {
           const {isDarkTheme} = value
           const theme = isDarkTheme ? 'dark' : 'light'
-          const color = isDarkTheme ? '#f9f9f9' : '#181818'
           return (
-            <HomeMainContainer theme={theme}>
+            <MainTrendingContainer data-testid="trending" theme={theme}>
               <Header />
               <MainContainer>
                 <SidebarCont>
                   <Sidebar />
                 </SidebarCont>
-                <HomeContainer>
-                  {showBanner && this.renderPopupBanner()}
-                  <SearchContainer>
-                    <SearchInputElement
-                      type="search"
-                      placeholder="Search"
-                      theme={theme}
-                      value={searchInput}
-                      onChange={this.onChangeSearchInput}
-                    />
-                    <SearchButton
-                      type="button"
-                      theme={theme}
-                      data-testid="searchButton"
-                    >
-                      <BsSearch size={18} color={color} />
-                    </SearchButton>
-                  </SearchContainer>
-                  {this.renderRespectiveHomeVideoView()}
-                </HomeContainer>
+                <TrendingContainer>
+                  <TrendingMenuContainer theme={theme}>
+                    <IconContainer theme={theme}>
+                      <HiFire size={40} color="#ff0b37" />
+                    </IconContainer>
+                    <MenuHeading theme={theme}>Trending</MenuHeading>
+                  </TrendingMenuContainer>
+                  {this.renderRespectiveTrendingVideoView()}
+                </TrendingContainer>
               </MainContainer>
-            </HomeMainContainer>
+            </MainTrendingContainer>
           )
         }}
       </ThemeContext.Consumer>
@@ -249,4 +176,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default Trending

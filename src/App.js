@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, Redirect} from 'react-router-dom'
 
 import ThemeContext from './context/ThemeContext'
 import ActiveMenuContext from './context/ActiveMenuContext'
@@ -8,6 +8,14 @@ import './App.css'
 
 import Login from './components/Login'
 import Home from './components/Home'
+import Trending from './components/Trending'
+import Gaming from './components/Gaming'
+import VideoItemDetails from './components/VideoItemDetails'
+import SavedVideos from './components/SavedVideos'
+import NotFound from './components/NotFound'
+import ProtectedRoute from './components/ProtectedRoute'
+
+import SavedVideosContext from './context/SavedVideosContext'
 
 const activeMenuConstants = {
   initial: 'INITIAL',
@@ -20,7 +28,42 @@ const activeMenuConstants = {
 // Replace your code here
 
 class App extends Component {
-  state = {isDarkTheme: false, activeMenu: activeMenuConstants.home}
+  state = {
+    isDarkTheme: false,
+    activeMenu: activeMenuConstants.home,
+    saved: false,
+    savedVideosList: [],
+  }
+
+  addVideosToSavedList = videoDetails => {
+    this.setState(prevState => ({
+      savedVideosList: [...prevState.savedVideosList, videoDetails],
+    }))
+  }
+
+  deleteVideosFromSavedList = videoDetails => {
+    const {savedVideosList} = this.state
+    const updatedVideosList = savedVideosList.filter(
+      eachVideo => eachVideo.id !== videoDetails.id,
+    )
+    this.setState({savedVideosList: updatedVideosList})
+  }
+
+  updateSaveStatus = videoDetails => {
+    this.setState(
+      prevState => ({saved: !prevState.saved}),
+      this.updateSaveVideosList(videoDetails),
+    )
+  }
+
+  updateSaveVideosList = videoDetails => {
+    const {saved} = this.state
+    if (saved) {
+      this.deleteVideosFromSavedList(videoDetails)
+    } else {
+      this.addVideosToSavedList(videoDetails)
+    }
+  }
 
   toggleTheme = () => {
     this.setState(prevState => ({isDarkTheme: !prevState.isDarkTheme}))
@@ -31,7 +74,7 @@ class App extends Component {
   }
 
   render() {
-    const {isDarkTheme, activeMenu} = this.state
+    const {isDarkTheme, activeMenu, saved, savedVideosList} = this.state
 
     return (
       <ThemeContext.Provider
@@ -40,17 +83,41 @@ class App extends Component {
           toggleTheme: this.toggleTheme,
         }}
       >
-        <ActiveMenuContext.Provider
+        <SavedVideosContext.Provider
           value={{
-            activeMenu,
-            changeActiveMenu: this.changeActiveMenu,
+            saved,
+            savedVideosList,
+            addVideosToSavedList: this.addVideosToSavedList,
+            deleteVideosFromSavedList: this.deleteVideosFromSavedList,
+            updateSaveStatus: this.updateSaveStatus,
           }}
         >
-          <Switch>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/" component={Home} />
-          </Switch>
-        </ActiveMenuContext.Provider>
+          <ActiveMenuContext.Provider
+            value={{
+              activeMenu,
+              changeActiveMenu: this.changeActiveMenu,
+            }}
+          >
+            <Switch>
+              <Route exact path="/login" component={Login} />
+              <ProtectedRoute exact path="/" component={Home} />
+              <ProtectedRoute exact path="/trending" component={Trending} />
+              <ProtectedRoute exact path="/gaming" component={Gaming} />
+              <ProtectedRoute
+                exact
+                path="/saved-videos"
+                component={SavedVideos}
+              />
+              <ProtectedRoute
+                exact
+                path="/videos/:id"
+                component={VideoItemDetails}
+              />
+              <ProtectedRoute exact path="/not-found" component={NotFound} />
+              <Redirect to="/not-found" />
+            </Switch>
+          </ActiveMenuContext.Provider>
+        </SavedVideosContext.Provider>
       </ThemeContext.Provider>
     )
   }

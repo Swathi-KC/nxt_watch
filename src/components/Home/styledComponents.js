@@ -99,5 +99,43 @@ export const VideosListCont = styled.ul`
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
-  width: 90%;
+  width: 95%;
+`
+
+export const NoVideosContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  margin: 10px;
+`
+export const NoVideosImg = styled.img`
+  width: 80%;
+  padding-top: 15px;
+  @media screen and (min-width: 768px) {
+    width: 50%;
+  }
+`
+
+export const FailureText = styled.h1`
+  margin: 0px;
+  padding: 5px;
+  color: ${props => (props.theme === 'dark' ? '#f9f9f9' : ' #231f20')};
+`
+export const RetryButton = styled.button`
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  width: 100px;
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 5px;
+`
+
+export const FailureContainer = styled(NoVideosContainer)``
+
+export const FailureImage = styled(NoVideosImg)``
+
+export const LoaderContainer = styled(NoVideosContainer)`
+  text-align: center;
 `
