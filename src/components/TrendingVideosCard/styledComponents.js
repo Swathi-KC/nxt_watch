@@ -89,7 +89,4 @@ export const VideoPostedAt = styled.p`
   font-size: 14px;
   text-decoration: none;
   margin-left: 5px;
-  &:active {
-    text-decoration: none;
-  }
 `

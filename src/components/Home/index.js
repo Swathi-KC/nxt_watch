@@ -98,7 +98,11 @@ class Home extends Component {
 
   renderPopupBanner = () => (
     <BannerContainer data-testid="banner">
-      <CloseButton data-testid="close" onClick={this.onClickCloseBanner} type="button">
+      <CloseButton
+        data-testid="close"
+        onClick={this.onClickCloseBanner}
+        type="button"
+      >
         <IoMdClose size={20} />
       </CloseButton>
       <BannerLogo
@@ -158,7 +162,7 @@ class Home extends Component {
           : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
         return (
           <FailureContainer>
-            <FailureImage src={imageUrl} alt=""failure view"" />
+            <FailureImage src={imageUrl} alt="failure view" />
             <FailureText theme={theme}>Oops! Something Went Wrong</FailureText>
             <FailureText theme={theme} as="p">
               We are having some trouble to complete your request. Please try

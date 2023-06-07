@@ -147,7 +147,7 @@ class Gaming extends Component {
           const {isDarkTheme} = value
           const theme = isDarkTheme ? 'dark' : 'light'
           return (
-            <MainGamingContainer data-testid="trending" theme={theme}>
+            <MainGamingContainer data-testid="gaming" theme={theme}>
               <Header />
               <MainContainer>
                 <SidebarCont>

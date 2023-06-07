@@ -133,10 +133,7 @@ class Login extends Component {
                   </CheckboxLabel>
                 </CheckboxContainer>
                 <LoginButton type="submit">Login</LoginButton>
-
-                <ErrorMessage>
-                  {showSubmitError && `* ${errorMsg}`}
-                </ErrorMessage>
+                {showSubmitError && <ErrorMessage>*{errorMsg}</ErrorMessage>}
               </FormContainer>
             </LoginFromContainer>
           )
