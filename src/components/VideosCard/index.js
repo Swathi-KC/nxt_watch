@@ -64,7 +64,7 @@ const VideosCard = props => {
                           <VideoName>{name}</VideoName>
                           <VideoPostCont>
                             <VideoView>{viewCount} views</VideoView>
-                            <VideoView as="p">. {publishedAt} ago</VideoView>
+                            <VideoView as="p">{publishedAt} ago</VideoView>
                           </VideoPostCont>
                         </VideoInfoCont>
                       </VideoContentContainer>
