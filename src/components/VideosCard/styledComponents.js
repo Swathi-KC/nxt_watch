@@ -36,7 +36,7 @@ export const VideoContentContainer = styled.div`
 `
 
 export const VideoTitle = styled.p`
-  color: ${props => (props.theme === 'dark' ? 'white' : ' #424242')};
+  color: ${props => (props.theme === 'dark' ? '#f1f1f1' : ' #424242')};
   margin: 0px;
   font-size: 16px;
   text-decoration: none;

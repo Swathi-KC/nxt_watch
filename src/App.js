@@ -1,11 +1,14 @@
-import {Component} from 'react'
 import {Switch, Route, Redirect} from 'react-router-dom'
+
+import {Component} from 'react'
 
 import ThemeContext from './context/ThemeContext'
 import ActiveMenuContext from './context/ActiveMenuContext'
+import SavedVideosContext from './context/SavedVideosContext'
 
 import './App.css'
 
+import ProtectedRoute from './components/ProtectedRoute'
 import Login from './components/Login'
 import Home from './components/Home'
 import Trending from './components/Trending'
@@ -13,9 +16,6 @@ import Gaming from './components/Gaming'
 import VideoItemDetails from './components/VideoItemDetails'
 import SavedVideos from './components/SavedVideos'
 import NotFound from './components/NotFound'
-import ProtectedRoute from './components/ProtectedRoute'
-
-import SavedVideosContext from './context/SavedVideosContext'
 
 const activeMenuConstants = {
   initial: 'INITIAL',
@@ -113,7 +113,7 @@ class App extends Component {
                 path="/videos/:id"
                 component={VideoItemDetails}
               />
-              <ProtectedRoute exact path="/not-found" component={NotFound} />
+              <Route path="/not-found" component={NotFound} />
               <Redirect to="/not-found" />
             </Switch>
           </ActiveMenuContext.Provider>

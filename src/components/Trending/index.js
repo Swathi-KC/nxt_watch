@@ -1,5 +1,7 @@
 import {Component} from 'react'
 
+import {formatDistanceToNow} from 'date-fns'
+
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {HiFire} from 'react-icons/hi'
@@ -42,6 +44,16 @@ class Trending extends Component {
     this.getTrendingVideos()
   }
 
+  getPublishedAt = postedAt => {
+    let publishedAt = formatDistanceToNow(new Date(postedAt))
+    const publishedAtList = publishedAt.split(' ')
+    if (publishedAtList.length === 3) {
+      publishedAtList.shift()
+      publishedAt = publishedAtList.join(' ')
+    }
+    return publishedAt
+  }
+
   getTrendingVideos = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
     const jwtToken = Cookies.get('jwt_token')
@@ -64,7 +76,7 @@ class Trending extends Component {
           name: eachVideo.channel.name,
           profileImageUrl: eachVideo.channel.profile_image_url,
         },
-        publishedAt: eachVideo.published_at,
+        publishedAt: this.getPublishedAt(eachVideo.published_at),
         viewCount: eachVideo.view_count,
       }))
       this.setState({

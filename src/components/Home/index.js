@@ -2,6 +2,8 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 
+import {formatDistanceToNow} from 'date-fns'
+
 import {IoMdClose} from 'react-icons/io'
 import {BsSearch} from 'react-icons/bs'
 
@@ -28,7 +30,7 @@ import {
   NoVideosContainer,
   NoVideosImg,
   FailureText,
-  RetryButton,
+  RetryButtonElement,
   FailureContainer,
   FailureImage,
   LoaderContainer,
@@ -51,6 +53,16 @@ class Home extends Component {
 
   componentDidMount() {
     this.getHomeVideos()
+  }
+
+  getPublishedAt = postedAt => {
+    let publishedAt = formatDistanceToNow(new Date(postedAt))
+    const publishedAtList = publishedAt.split(' ')
+    if (publishedAtList.length === 3) {
+      publishedAtList.shift()
+      publishedAt = publishedAtList.join(' ')
+    }
+    return publishedAt
   }
 
   getHomeVideos = async () => {
@@ -76,7 +88,7 @@ class Home extends Component {
           name: eachVideo.channel.name,
           profileImageUrl: eachVideo.channel.profile_image_url,
         },
-        publishedAt: eachVideo.published_at,
+        publishedAt: this.getPublishedAt(eachVideo.published_at),
         viewCount: eachVideo.view_count,
       }))
       this.setState({
@@ -129,9 +141,9 @@ class Home extends Component {
             <FailureText theme={theme} as="p">
               Try different key words or remove search filter
             </FailureText>
-            <RetryButton type="button" onClick={this.getHomeVideos}>
+            <RetryButtonElement type="button" onClick={this.getHomeVideos}>
               Retry
-            </RetryButton>
+            </RetryButtonElement>
           </NoVideosContainer>
         )
       }}
@@ -168,9 +180,9 @@ class Home extends Component {
               We are having some trouble to complete your request. Please try
               again
             </FailureText>
-            <RetryButton type="button" onClick={this.getHomeVideos}>
+            <RetryButtonElement type="button" onClick={this.getHomeVideos}>
               Retry
-            </RetryButton>
+            </RetryButtonElement>
           </FailureContainer>
         )
       }}

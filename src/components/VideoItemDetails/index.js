@@ -17,7 +17,7 @@ import {
   VideoDetailsContainer,
   VideoPlayerCont,
   VideoContentCont,
-  VideoTitle,
+  VideoItemTitle,
   LikesAndPostedTimeCont,
   ViewsAndPostTimeCont,
   VideoInfoText,
@@ -146,7 +146,7 @@ class VideoItemDetails extends Component {
                 />
               </VideoPlayerCont>
               <VideoContentCont>
-                <VideoTitle theme={theme}>{title}</VideoTitle>
+                <VideoItemTitle theme={theme}>{title}</VideoItemTitle>
                 <LikesAndPostedTimeCont>
                   <ViewsAndPostTimeCont>
                     <VideoInfoText>{viewCount} views</VideoInfoText>

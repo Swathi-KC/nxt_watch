@@ -1,4 +1,4 @@
-import {formatDistanceToNow} from 'date-fns'
+// import {formatDistanceToNow} from 'date-fns'
 import {Link} from 'react-router-dom'
 
 import {
@@ -28,15 +28,15 @@ const VideosCard = props => {
     publishedAt,
   } = videoDetails
   const {name, profileImageUrl} = channel
-  let videoPostedAt = formatDistanceToNow(new Date(publishedAt))
-  const videoPostedAtList = videoPostedAt.split(' ')
-  //   console.log(videoPostedAtList)
-  if (videoPostedAtList.length === 3) {
-    videoPostedAtList.shift()
-    // console.log(videoPostedAtList)
-    videoPostedAt = videoPostedAtList.join(' ')
-  }
-  //   console.log(videoPostedAt)
+  //   let videoPostedAt = formatDistanceToNow(new Date(publishedAt))
+  //   const videoPostedAtList = videoPostedAt.split(' ')
+  //     console.log(videoPostedAtList)
+  //   if (videoPostedAtList.length === 3) {
+  //     videoPostedAtList.shift()
+  //     console.log(videoPostedAtList)
+  //     videoPostedAt = videoPostedAtList.join(' ')
+  //   }
+  //     console.log(videoPostedAt)
   return (
     <ThemeContext.Consumer>
       {value => {
@@ -64,9 +64,7 @@ const VideosCard = props => {
                           <VideoName>{name}</VideoName>
                           <VideoPostCont>
                             <VideoView>{viewCount} views</VideoView>
-                            <p className="video-published">
-                              {videoPostedAt} ago
-                            </p>
+                            <VideoView as="p">. {publishedAt} ago</VideoView>
                           </VideoPostCont>
                         </VideoInfoCont>
                       </VideoContentContainer>

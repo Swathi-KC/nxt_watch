@@ -46,6 +46,7 @@ export const NotFoundText = styled.h1`
   padding: 5px;
   color: ${props => (props.theme === 'dark' ? '#f9f9f9' : ' #231f20')};
 `
+
 export const NotFoundSubText = styled.p`
   margin: 0px;
   padding: 5px;

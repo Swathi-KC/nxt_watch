@@ -122,7 +122,7 @@ export const FailureText = styled.h1`
   padding: 5px;
   color: ${props => (props.theme === 'dark' ? '#f9f9f9' : ' #231f20')};
 `
-export const RetryButton = styled.button`
+export const RetryButtonElement = styled.button`
   background-color: #4f46e5;
   color: white;
   border: none;

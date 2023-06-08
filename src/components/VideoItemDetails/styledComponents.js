@@ -82,7 +82,7 @@ export const VideoContentCont = styled.div`
   flex-direction: column;
 `
 
-export const VideoTitle = styled.p`
+export const VideoItemTitle = styled.p`
   color: ${props => (props.theme === 'dark' ? '#f1f1f1' : ' #424242')};
   font-weight: 500;
   margin-top: 5px;
@@ -140,7 +140,7 @@ export const ChannelLogo = styled.img`
 `
 
 export const ChannelInfoText = styled.p`
-  color: ${props => (props.theme === 'dark' ? '#2563eb' : '#64748b')};
+  color: ${props => (props.theme === 'dark' ? '#f1f1f1' : ' #424242')};
   margin: 0px;
   font-size: 16px;
   text-decoration: none;
