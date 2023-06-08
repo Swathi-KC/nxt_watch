@@ -43,13 +43,14 @@ export const InputLabel = styled.label`
   font-weight: 400;
   font-family: 'Roboto';
   line-height: 1;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   color: ${props => (props.theme === 'dark' ? '#f1f1f1' : '#475569')};
 `
 
 export const InputElement = styled.input`
   height: 35px;
   border: 1px #cbd5e1 solid;
+  margin-bottom: 10px;
   border-radius: 4px;
   background-color: transparent;
   padding: 5px;
@@ -87,6 +88,7 @@ export const LoginButton = styled.button`
   cursor: pointer;
   border-radius: 4px;
   outline: none;
+  margin-top: 6px;
 `
 export const ErrorMessage = styled.p`
   font-size: 12px;

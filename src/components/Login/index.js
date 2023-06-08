@@ -110,7 +110,9 @@ class Login extends Component {
                   />
                 </InputContainer>
                 <InputContainer>
-                  <InputLabel htmlFor="password">PASSWORD</InputLabel>
+                  <InputLabel htmlFor="password" theme={theme}>
+                    PASSWORD
+                  </InputLabel>
                   <InputElement
                     type={showPassword ? 'text' : 'password'}
                     id="password"
